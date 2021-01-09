@@ -10,6 +10,8 @@ public class SnakeAndLadder {
 
         // Computation
         System.out.println("Player is Starting at: " + startPosition);
+        int diceFace = (int) ((Math.floor(Math.random() * 10) % 6) + 1);
+        System.out.println("Current Dice Face: " + diceFace);
 
     }
 }
