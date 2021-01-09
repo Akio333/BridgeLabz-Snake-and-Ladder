@@ -15,20 +15,34 @@ public class SnakeAndLadder {
 
         // Computation
         System.out.println("Player is Starting at: " + startPosition);
-        diceFace = (int) ((Math.floor(Math.random() * 10) % 6) + 1);
-        System.out.println("Current Dice Face: " + diceFace);
-        play = (int) ((Math.floor(Math.random() * 10) % 3));
-        switch (play) {
-            case IS_LADDER:
-                currentPosition += diceFace;
+
+        while (currentPosition != 100) {
+            diceFace = (int) ((Math.floor(Math.random() * 10) % 6) + 1);
+            System.out.println("Current Dice Face: " + diceFace);
+            play = (int) ((Math.floor(Math.random() * 10) % 3));
+            switch (play) {
+                case IS_LADDER:
+                    currentPosition += diceFace;
+                    break;
+                case IS_SNAKE:
+                    currentPosition -= diceFace;
+                    break;
+                default:
+                    currentPosition = currentPosition + 0; // Useless line - Added For reference only.
+                    break;
+            }
+            if (currentPosition == 100) {
                 break;
-            case IS_SNAKE:
+            } else if (currentPosition > 100) {
                 currentPosition -= diceFace;
-                break;
-            default:
-                currentPosition = currentPosition + 0; // Useless line - Added For reference only.
-                break;
+                System.out.println("Not valid Dice Face. You are staying on same position.");
+            } else if (currentPosition < 0) {
+                currentPosition = startPosition; // Starting from zero again.
+                System.out.println("You came back to start.");
+            } else {
+                System.out.println("New Position: " + currentPosition);
+            }
         }
-        System.out.println("New Position: " + currentPosition);
+        System.out.println("Winner...!");
     }
 }
