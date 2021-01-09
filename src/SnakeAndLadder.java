@@ -32,10 +32,11 @@ public class SnakeAndLadder {
                     break;
             }
             if (currentPosition == 100) {
+                System.out.println("New Position: " + currentPosition);
                 break;
             } else if (currentPosition > 100) {
                 currentPosition -= diceFace;
-                System.out.println("Not valid Dice Face. You are staying on same position.");
+                System.out.println("Staying at same location.");
             } else if (currentPosition < 0) {
                 currentPosition = startPosition; // Starting from zero again.
                 System.out.println("You came back to start.");
@@ -43,6 +44,6 @@ public class SnakeAndLadder {
                 System.out.println("New Position: " + currentPosition);
             }
         }
-        System.out.println("Winner...!");
+        System.out.println("Congratulations! You Won.");
     }
 }
