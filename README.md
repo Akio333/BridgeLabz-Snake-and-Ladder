@@ -1,14 +1,16 @@
-## Getting Started
+## Employee Wage Builder
+This is program to calculate employee wage on monthly basis.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## How to run
+First make sure you have jdk 11+ installed in system.
 
-## Folder Structure
+Open ``` src/*.java ``` file from your favourit text editor.
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+Use following command to compile.
+```
+javac <filename>.java
+```
+Run with following command.
+```
+java <filename>
+```
