@@ -12,11 +12,13 @@ public class SnakeAndLadder {
         int currentPosition = 0;
         int diceFace;
         int play;
+        int counter = 0;
 
         // Computation
         System.out.println("Player is Starting at: " + startPosition);
 
         while (currentPosition != 100) {
+            counter++;
             diceFace = (int) ((Math.floor(Math.random() * 10) % 6) + 1);
             System.out.println("Current Dice Face: " + diceFace);
             play = (int) ((Math.floor(Math.random() * 10) % 3));
@@ -28,7 +30,6 @@ public class SnakeAndLadder {
                     currentPosition -= diceFace;
                     break;
                 default:
-                    currentPosition = currentPosition + 0; // Useless line - Added For reference only.
                     break;
             }
             if (currentPosition == 100) {
@@ -38,12 +39,12 @@ public class SnakeAndLadder {
                 currentPosition -= diceFace;
                 System.out.println("Staying at same location.");
             } else if (currentPosition < 0) {
-                currentPosition = startPosition; // Starting from zero again.
+                currentPosition = startPosition;
                 System.out.println("You came back to start.");
             } else {
                 System.out.println("New Position: " + currentPosition);
             }
         }
-        System.out.println("Congratulations! You Won.");
+        System.out.println("Congratulations! You Won. You have taken total " + counter + " plays of dice to Win.");
     }
 }
