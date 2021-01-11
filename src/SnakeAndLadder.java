@@ -1,34 +1,49 @@
 public class SnakeAndLadder {
+    // Static Attributes
     public static final int IS_LADDER = 1;
     public static final int IS_SNAKE = 2;
+    public static final String PLAYER = "Player ";
 
-    // Variables
-    int startPosition = 0;
-    int currentPosition = 0;
-    int diceFace = 0;
-    int play = 0;
-    int counterP1 = 0;
-    int counterP2 = 0;
-    int player = 1;
+    // Attributes
+    int startPosition;
+    int currentPosition;
+    int diceFace;
+    int play;
+    int counterP1;
+    int counterP2;
+    int player;
+
+    // Constructer
+    SnakeAndLadder(int sP, int cP, int dP, int p, int cp1, int cp2, int pno) {
+        startPosition = sP;
+        currentPosition = cP;
+        diceFace = dP;
+        play = p;
+        counterP1 = cp1;
+        counterP2 = cp2;
+        player = pno;
+    }
 
     public static void main(String[] args) throws Exception {
         // Welcome Message
         System.out.println("Welcome To Snake and Ladder Simulator .... ");
-        System.out.println("************************************");
+        System.out.println("******************************************\n");
 
         // Object of SnakeAndLadder
-        SnakeAndLadder sl = new SnakeAndLadder();
+        // SnakeAndLadder(int startPosition, int currentPosition, int diceFace, int
+        // play, int counteP1, int counterP2, int player)
+        SnakeAndLadder snakeAndLadder = new SnakeAndLadder(0, 0, 0, 0, 0, 0, 1);
 
         // Initial Positions
-        System.out.println("Player 1 is Starting at: " + sl.startPosition);
-        System.out.println("Player 2 is Starting at: " + sl.startPosition);
+        System.out.println("Player 1 is Starting at: " + snakeAndLadder.startPosition);
+        System.out.println("Player 2 is Starting at: " + snakeAndLadder.startPosition + "\n");
 
         // Main loop
-        while (sl.currentPosition != 100) {
-            if (sl.player == 1) {
-                sl.playCheck(1);
+        while (snakeAndLadder.currentPosition != 100) {
+            if (snakeAndLadder.player == 1) {
+                snakeAndLadder.playCheck(1);
             } else {
-                sl.playCheck(2);
+                snakeAndLadder.playCheck(2);
             }
         }
 
@@ -45,7 +60,7 @@ public class SnakeAndLadder {
     }
 
     // Check position is between 0 to 100
-    void checkPosition(int p) {
+    void checkBoundaryPositions(int p) {
         if (currentPosition == 100) {
             System.out.println("New Position of Player " + p + ": " + currentPosition);
             exitGame(p);
@@ -72,18 +87,20 @@ public class SnakeAndLadder {
         play = playGen();
         switch (play) {
             case IS_LADDER:
+                System.out.println(PLAYER + p + ": Got Ladder");
                 currentPosition += diceFace;
-                checkPosition(p);
+                checkBoundaryPositions(p);
                 playCheck(p);
                 break;
             case IS_SNAKE:
+                System.out.println(PLAYER + p + ": Bitten by snake.");
                 currentPosition -= diceFace;
-                checkPosition(p);
-                checkPlayer();
+                checkBoundaryPositions(p);
+                switchPlayer();
                 break;
             default:
-                System.out.println("Player " + p + ": No play");
-                checkPlayer();
+                System.out.println(PLAYER + p + ": No play");
+                switchPlayer();
                 break;
         }
     }
@@ -91,12 +108,13 @@ public class SnakeAndLadder {
     // Exit Game
     void exitGame(int p) {
         int count = p == 1 ? counterP1 : counterP2;
-        System.out.println("Player " + p + " Won the game!. It took " + count + " Dice plays to win.");
+        System.out.println(PLAYER + p + " Won the game!. It took " + count + " Dice plays to win.");
         System.exit(0);
     }
 
     // Switch players
-    void checkPlayer() {
+    void switchPlayer() {
+        System.out.println("");
         if (player == 1) {
             player = 2;
         } else {
